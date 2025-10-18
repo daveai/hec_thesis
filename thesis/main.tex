@@ -1,0 +1,95 @@
+\documentclass[12pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{natbib}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{longtable}
+\usepackage{pdflscape}
+\usepackage{xcolor}
+
+% Custom colors
+\definecolor{btcorange}{RGB}{247,147,26}
+\definecolor{mstrblue}{RGB}{0,82,147}
+
+% Line spacing
+\onehalfspacing
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=mstrblue,
+    citecolor=mstrblue,
+    urlcolor=mstrblue
+}
+
+% Title
+\title{%
+    \textbf{Long Vol, Long BTC, Long Saylor} \\[0.5cm]
+    \large Analyzing MicroStrategy's Reflexive Feedback Loop: \\
+    Capital Structure, Convertible Arbitrage, and Bitcoin Acquisition Strategy
+}
+
+\author{%
+    Dave Montali \\
+    Executive Master in Finance (EMiF 10) \\
+    HEC Paris \\[0.3cm]
+    \small Supervisor: Co-Pierre Georg
+}
+
+\date{February 2026}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+% Abstract
+\begin{abstract}
+\noindent
+This thesis investigates the self-reinforcing feedback loop between Strategy's (MSTR, formerly MicroStrategy) financing strategy and Bitcoin acquisitions. As of January 2026, Strategy holds 687,410 BTC financed through \$8.2 billion in convertible debt and \$6.5 billion in preferred shares. I frame MSTR equity as a call option on Bitcoin, document patterns consistent with reflexive capital formation through an event study around capital raises, and examine how convertible arbitrageurs profit from the structure at the expense of retail equity holders. Using data from August 2020 to January 2026, I find that Strategy systematically raises capital during elevated premium windows (average pre-event premium of 47.3\% vs. unconditional mean of $-$8.2\%, $p < 0.001$). The NAV premium exhibits extreme persistence ($\beta = 0.995$), allowing management to exploit favorable conditions for extended capital raising campaigns. I stress-test the capital structure through scenario analysis, finding equity wipeout occurs at approximately \$21,300 BTC (a 78\% decline from current levels) while convertible debt remains protected until \$11,929 (an 87\% decline).
+
+\vspace{0.5cm}
+\noindent\textbf{Keywords:} Strategy, MicroStrategy, Bitcoin, Convertible Bonds, Reflexivity, Capital Structure, Corporate Finance
+\end{abstract}
+\newpage
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+% List of Figures and Tables
+\listoffigures
+\listoftables
+\newpage
+
+% Chapters
+\input{chapters/introduction}
+\input{chapters/literature}
+\input{chapters/capital_structure}
+\input{chapters/methodology}
+\input{chapters/results}
+\input{chapters/discussion}
+\input{chapters/conclusion}
+
+% Bibliography
+\newpage
+\bibliographystyle{apalike}
+\bibliography{bibliography}
+
+% Appendix
+\appendix
+\input{chapters/appendix}
+
+\end{document}
