@@ -1,0 +1,60 @@
+\section{Literature Review}
+\label{sec:literature}
+
+Three strands of academic work inform this analysis: market reflexivity, structural credit models, and convertible bond arbitrage. None adequately addresses the phenomenon MSTR represents, but together they provide the theoretical scaffolding for understanding what the company has built.
+
+\subsection{Market Reflexivity}
+
+George Soros introduced reflexivity in \textit{The Alchemy of Finance} \citep{soros1987alchemy}, arguing that market participants don't merely observe fundamentals but actively shape them. Prices reflect beliefs about value, and those beliefs influence the very fundamentals they purport to measure. Two functions operate simultaneously: a cognitive function where participants try to understand the world, and a participating function where their actions change it. When both functions interact, self-reinforcing cycles emerge that deviate from equilibrium predictions.
+
+The standard critique of reflexivity is that it's unfalsifiable. If markets go up, reflexivity explains the feedback loop. If markets go down, reflexivity explains the reversal. Soros never provides a mathematical specification that would allow empirical testing. \citet{shiller2015irrational} documents feedback trading in equity markets and offers survey evidence of extrapolative expectations, but his work focuses on market-wide dynamics rather than firm-level mechanisms. \citet{brunnermeier2014macroeconomic} models amplification in credit markets through leverage constraints, showing how falling asset prices tighten funding conditions, which forces asset sales, which depresses prices further. Their framework is rigorous but operates at the macro level.
+
+I contend that MSTR offers a unique laboratory for testing whether firm-level dynamics exhibit patterns consistent with reflexivity, where each link in the hypothesized chain is observable. The proposed mechanism operates through concrete channels: stock price determines equity issuance capacity; issuance capacity determines Bitcoin accumulation; Bitcoin holdings determine net asset value; NAV influences stock price. Each link can be measured:
+\begin{enumerate}
+    \item High stock price $\rightarrow$ cheap equity capital
+    \item Cheap capital $\rightarrow$ more BTC purchases
+    \item More BTC $\rightarrow$ higher NAV
+    \item Higher NAV $\rightarrow$ higher stock price
+\end{enumerate}
+
+Rather than claim to prove reflexivity exists, I test whether observable patterns are consistent with reflexive dynamics. The contribution is methodological: providing a framework for measuring feedback loops in corporate finance contexts, with MSTR as the test case. Whether these patterns constitute ``reflexivity'' in Soros's philosophical sense is less important than whether they have predictive content for understanding MSTR's capital formation behavior.
+
+\subsection{Merton Structural Credit Model}
+
+\citet{merton1974pricing} transformed credit analysis by recognizing that equity is a call option on firm assets. Shareholders receive the residual after debt is paid: $\max(V_T - D, 0)$ at maturity, where $V_T$ is asset value and $D$ is debt face value. Debt holders receive $\min(V_T, D)$. This insight allows Black-Scholes-Merton pricing:
+\begin{align}
+    E &= V \cdot N(d_1) - D \cdot e^{-rT} \cdot N(d_2) \\
+    d_1 &= \frac{\ln(V/D) + (r + \sigma^2/2)T}{\sigma\sqrt{T}} \\
+    d_2 &= d_1 - \sigma\sqrt{T}
+\end{align}
+
+The distance to default measures how many standard deviations separate current asset value from the default threshold:
+\begin{equation}
+    DD = \frac{\ln(V/D) + (\mu - \sigma^2/2)T}{\sigma\sqrt{T}}
+\end{equation}
+
+Critics note that Merton models systematically underpredict credit spreads (the ``credit spread puzzle''), and that the lognormal assumption poorly captures fat-tailed asset distributions. \citet{leland1994corporate} extends the framework to incorporate optimal capital structure, and \citet{collin2001determinants} applies it to spread prediction with mixed success.
+
+MSTR presents an unusually clean test case for the Merton framework, cleaner than most corporate applications. The asset (Bitcoin) has continuous market prices with no estimation required. Volatility can be calculated directly from BTC returns rather than backed out from equity prices. The debt structure is publicly documented. And equity trades continuously, allowing real-time model validation. The challenge is that Bitcoin's volatility exceeds anything Merton contemplated, raising questions about how the framework behaves at extreme parameter values.
+
+\subsection{Convertible Bond Arbitrage}
+
+Convertible bonds combine straight debt with an embedded equity call option. The classic arbitrage strategy, documented by \citet{agarwal2011convertible}, involves buying the convertible, shorting the underlying equity to hedge delta, and profiting from volatility through gamma scalping. As the stock moves, the delta of the embedded option changes, requiring hedge rebalancing. This rebalancing generates trading profits proportional to realized volatility.
+
+The relevant Greeks for convertible arbitrage are delta (sensitivity to underlying price), gamma (rate of delta change, determining rebalancing frequency), vega (sensitivity to implied volatility), and theta (time decay). \citet{choi2009convertible} show that convertible arb funds are net providers of delta hedging flow, and their activity can amplify rather than dampen stock volatility. When gamma is large (at-the-money converts), even small price moves trigger significant hedging trades.
+
+\citet{shleifer1997limits} complicate the arbitrage picture by demonstrating that capital constraints, agency problems, and noise trader risk prevent arbitrageurs from fully exploiting mispricings. Arbitrage isn't frictionless. Positions require capital and entail risks beyond the textbook spread. In the MSTR context, this suggests that even sophisticated arb funds face constraints that may allow the NAV premium to persist longer than pure efficiency would predict.
+
+MSTR amplifies convertible arb dynamics because the notional outstanding is large relative to equity float, underlying Bitcoin volatility exceeds typical equity vol by a factor of two or three, and the zero-coupon structure maximizes the embedded option component. These characteristics suggest that convertible arbitrageurs are well-positioned to extract value from the structure regardless of Bitcoin's direction.
+
+\subsection{Cryptocurrency Markets and Corporate Adoption}
+
+The academic literature on crypto markets has grown rapidly since Bitcoin's inception. \citet{liu2022risks} establish that cryptocurrency returns are driven by factors distinct from traditional asset pricing models; network effects and momentum dominate. \citet{makarov2020trading} document substantial cross-exchange arbitrage opportunities, suggesting persistent inefficiencies. \citet{griffin2020bitcoin} raise concerns about price manipulation, though the extent remains debated.
+
+Corporate Bitcoin adoption is a newer phenomenon with limited academic coverage. \citet{baker2022corporate} survey post-2020 treasury practices and find increased interest in digital assets as inflation hedges. \citet{yi2021bitcoin} examine announcement effects of corporate Bitcoin purchases on stock returns. But MicroStrategy sits outside the scope of this literature. Most corporate adopters allocated single-digit percentages of treasury to Bitcoin. MSTR made it the entire balance sheet. No framework exists for analyzing a company that has transformed itself from a software firm into a leveraged Bitcoin vehicle.
+
+\subsection{Research Gap}
+
+The literatures on reflexivity, credit modeling, and convertible arbitrage developed independently and address different phenomena. Soros wrote about macro markets, Merton about corporate debt, and the arb literature about hedge fund strategies. No prior work has tested for reflexive dynamics in a single-issuer cryptocurrency context, applied structural credit models to crypto-backed liabilities, or modeled how convertible arbitrage interacts with firm-level feedback loops.
+
+This thesis addresses that gap by integrating the three frameworks. The MSTR structure offers what approaches a natural experiment: a publicly traded company whose capital structure makes the hypothesized feedback mechanism observable and, within the limits of non-experimental data, testable.
