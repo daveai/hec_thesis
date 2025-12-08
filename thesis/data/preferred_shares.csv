@@ -1,0 +1,6 @@
+Ticker,Name,Launch,Notional,Dividend_Rate,Cumulative
+STRK,Strike,2025-02,1390000000.0,0.08,True
+STRF,Strife,2025-03,1240000000.0,0.1,True
+STRD,Stride,2025-06,1250000000.0,0.1,False
+STRC,Stretch,2025-07,2800000000.0,0.105,True
+STRE,Stream,2025-11,715000000.0,0.1,True
