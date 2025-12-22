@@ -1,0 +1,100 @@
+\section{Data and Methodology}
+\label{sec:methodology}
+
+\subsection{Data Sources}
+
+Price data comes from Yahoo Finance for the period August 11, 2020 (MSTR's first Bitcoin announcement) through January 31, 2026. I collect daily closing prices for BTC-USD, MSTR (adjusted for splits), and SPY as a market benchmark. Corporate data on Bitcoin holdings, convertible issuances, preferred share terms, and ATM equity sales comes from SEC EDGAR filings and company press releases.
+
+From these sources I construct the variables in Table~\ref{tab:variables}.
+
+\begin{table}[H]
+\centering
+\caption{Variable Definitions}
+\label{tab:variables}
+\begin{tabular}{@{}lp{10cm}@{}}
+\toprule
+\textbf{Variable} & \textbf{Definition} \\
+\midrule
+$NAV_t$ & Net Asset Value = BTC Holdings $\times$ BTC Price$_t$ \\
+$Premium_t$ & (Market Cap$_t$ - NAV$_t$) / NAV$_t$ \\
+$r^{BTC}_t$ & Daily log return on Bitcoin \\
+$r^{MSTR}_t$ & Daily log return on MSTR \\
+$CapRaise_t$ & Indicator for capital raise event in period $t$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Credit Risk Framework}
+
+I frame MSTR equity as a call option on its Bitcoin holdings. This isn't a novel insight; it follows directly from \citet{merton1974pricing}'s observation that equity holders receive the residual after debt is paid: $\max(V_T - D, 0)$ at maturity. When a company's only asset is Bitcoin, the analogy becomes literal rather than metaphorical.
+
+The key metric is the asset-to-debt ratio:
+\begin{equation}
+    \text{Asset/Debt} = \frac{\text{BTC Holdings} \times \text{BTC Price}}{\text{Total Claims}}
+\end{equation}
+
+At current prices (\$95,000 BTC), Strategy's 687,410 BTC are worth \$65.3 billion against \$14.67 billion in total claims, yielding a 4.45$\times$ asset/debt ratio. This ratio tells you how much cushion exists before creditors face impairment.
+
+The breakeven BTC price for each capital layer is simply:
+\begin{equation}
+    \text{Breakeven}_i = \frac{\text{Cumulative Claims}_i}{\text{BTC Holdings}}
+\end{equation}
+
+For common equity, the breakeven is \$14.67B / 687,410 = \$21,341 per BTC. Below that price, equity is worthless. Senior claims have lower breakevens because fewer dollars sit ahead of them in the waterfall.
+
+I don't report implied default probabilities or credit spreads from the Merton model. The framework assumes lognormal returns and constant volatility, neither of which describes Bitcoin. Model-implied spreads of 1-2 basis points bear no resemblance to the 150-250 bps at which MSTR converts actually trade. The value of the framework lies in comparative statics: how do asset/debt ratios and breakevens shift as BTC price changes?
+
+\subsection{Reflexivity Analysis}
+
+\subsubsection{NAV Premium Persistence}
+
+I estimate a simple autoregressive model to test whether the NAV premium mean-reverts or persists:
+\begin{equation}
+    Premium_t = \alpha + \beta \cdot Premium_{t-1} + \epsilon_t
+\end{equation}
+
+A coefficient near 1.0 suggests that premium states are sticky: once MSTR trades at a premium (or discount), it tends to stay there. A coefficient near 0 would suggest rapid mean-reversion.
+
+\subsubsection{Event Study Around Capital Raises}
+
+The core mechanistic claim is that MSTR times capital raises to premium windows. I test this directly by identifying 23 capital raise events from SEC filings (ATM announcements, convertible offerings, preferred issuances) and measuring the NAV premium in windows around each announcement:
+\begin{equation}
+    \overline{Premium}_{[-k, -1]} = \frac{1}{k} \sum_{t=-k}^{-1} Premium_t
+\end{equation}
+
+I compare pre-event premiums ($k = 5, 10, 20$ trading days) against the unconditional sample mean using a one-sample t-test. If MSTR systematically raises capital during elevated premium windows, we should observe:
+\begin{equation}
+    H_0: \overline{Premium}_{pre-event} = \overline{Premium}_{sample} \quad \text{vs.} \quad H_1: \overline{Premium}_{pre-event} > \overline{Premium}_{sample}
+\end{equation}
+
+A statistically significant positive differential provides direct evidence for the mechanistic link: management exploits premium windows to raise capital cheaply.
+
+\subsection{Scenario Analysis}
+
+I stress-test the capital structure under alternative BTC price assumptions. Table~\ref{tab:scenarios} defines the scenarios.
+
+\begin{table}[H]
+\centering
+\caption{Scenario Definitions}
+\label{tab:scenarios}
+\begin{tabular}{@{}lc@{}}
+\toprule
+\textbf{Scenario} & \textbf{BTC Price Change} \\
+\midrule
+Base Case & 0\% \\
+Moderate Drawdown & $-$30\% \\
+Severe Drawdown & $-$50\% \\
+Prolonged Bear & $-$70\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For each scenario I calculate NAV, asset/debt ratio, and equity value. The scenarios correspond roughly to historical Bitcoin drawdowns: 30\% corrections happen multiple times per cycle, 50\% drawdowns have occurred in every major cycle, and 70\%+ drawdowns occurred in 2014, 2018, and 2022.
+
+\subsection{Convertible Arbitrage Dynamics}
+
+Strategy's \$8.2 billion convertible book is held primarily by arbitrage hedge funds who profit from volatility rather than directional exposure. The mechanism is straightforward: arb funds buy the convertible, short MSTR stock to hedge the embedded option's delta, and rebalance as the stock moves. This ``gamma scalping'' generates trading profits proportional to realized volatility.
+
+The implication is that MSTR's volatility benefits a specific class of investors (arb funds) while creating risk for others (retail equity holders). I don't attempt to quantify gamma exposure precisely; the converts are substantially out of the money, which limits gamma regardless of notional. The qualitative point matters more than the exact number: sophisticated investors extract value from the structure in ways that retail participants don't.
+
+
