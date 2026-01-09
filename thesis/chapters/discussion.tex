@@ -1,0 +1,65 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{What the Evidence Shows}
+
+The event study is the core finding. MSTR systematically raises capital during premium windows: average pre-event premium of 47.3\% versus unconditional mean of $-8.2\%$, a 55.5 percentage point difference ($p < 0.001$). This isn't correlation; it's the mechanism in action. Management watches the premium, waits for elevated levels, and issues equity or converts when the spread between market valuation and NAV is widest.
+
+The premium persistence result ($\beta = 0.995$) explains why this works. Once MSTR trades at a premium, it tends to stay at a premium. Once it trades at a discount, it stays at a discount. This stickiness gives management time to execute capital raises during favorable windows rather than racing against mean-reversion.
+
+Together, these findings describe a conditional feedback loop. When BTC prices rise, NAV increases, the premium often expands, and Strategy can raise capital cheaply to buy more Bitcoin. When BTC falls, the premium compresses or goes negative, and the capital formation engine stalls. The loop operates at the firm level; Granger causality tests (reported in the appendix) show that MSTR's premium doesn't predict Bitcoin returns, indicating the company is a price-taker in Bitcoin markets, not a price-maker.
+
+\subsection{Credit Risk: Simple Math}
+
+The credit story is straightforward once you accept that MSTR equity is a call option on Bitcoin with the debt burden as the strike price.
+
+At \$95,000 BTC, Strategy holds \$65.3 billion in assets against \$14.67 billion in claims: a 4.45$\times$ asset/debt ratio. Equity is worth \$50.6 billion. This cushion is substantial. Bitcoin would need to fall 78\% before equity is wiped out.
+
+At \$35,000 BTC (a 63\% decline), asset/debt compresses to 1.64$\times$. Equity falls 81\% to \$9.4 billion. Strategy likely loses access to ATM equity issuance at attractive terms. The reflexive loop breaks or at least weakens severely.
+
+At \$21,300 BTC, assets equal claims and equity is worthless. The preferred dividends become at risk. Below that level, losses start moving up the capital structure through the preferred tranches toward the convertible debt.
+
+\subsection{Who Wins, Who Loses}
+
+The capital structure creates asymmetric exposures across investor classes.
+
+\textbf{Convertible arbitrageurs} profit from volatility regardless of direction. They buy the convert, short MSTR stock to hedge delta, and rebalance as the stock moves. This gamma scalping extracts value from price swings. The zero-coupon structure is particularly attractive because it maximizes the option component relative to bond value. Arb funds are the sophisticated players in this structure; they understood what they were buying.
+
+\textbf{Retail equity holders} bear leveraged directional risk. MSTR equity runs about 1.5$\times$ the volatility of Bitcoin. In bull markets, this amplification is attractive. In bear markets, it's devastating. Retail investors are effectively long a call option on Bitcoin, which sounds fine until you realize that call options can expire worthless.
+
+\textbf{Preferred shareholders} occupy middle ground. They collect 8-10\% yields and sit above common equity in the capital structure. But they're still exposed to Bitcoin: in severe scenarios, even senior preferreds face impairment. STRD holders (the junior non-cumulative preferred) have the worst risk-reward. If Strategy suspends their dividend, they have no legal claim to catch up. They bear meaningful downside without the upside optionality of equity.
+
+\subsection{What Breaks the Loop}
+
+The reflexive mechanism requires three conditions: capital market access, elevated volatility, and Bitcoin prices that don't collapse. When any condition fails, the flywheel slows or stops.
+
+\textbf{Bitcoin drawdown.} A 50\% or greater decline compresses the loop. NAV falls, the premium likely goes negative (as it did in 2022, reaching $-72\%$), and equity issuance becomes dilutive or impossible. Strategy's current position is more resilient than before: with \$2.25 billion in USD reserves and \$850 million annual servicing, the company has roughly 32 months of runway without selling Bitcoin or accessing capital markets. But this buffer is finite. A prolonged bear market would eventually force either asset sales or debt restructuring.
+
+\textbf{Volatility compression.} If Bitcoin matures into a lower-volatility asset class (from current 45-50\% to something closer to gold's 15-20\%), the convertible financing advantage evaporates. Arb funds would demand coupons rather than accepting zero-coupon paper. Strategy's cost of capital increases, potentially by 3-5 percentage points on new issuances. The vol compression scenario is insidious because it can occur even with stable or rising Bitcoin prices.
+
+\textbf{Index exclusion.} MSTR's inclusion in major indices creates passive demand. MSCI is reportedly reviewing the company's classification. Reclassification as a financial rather than technology company could trigger removal from tech indices and forced selling by passive funds. This wouldn't affect the underlying business but could compress the premium.
+
+\textbf{Regulatory action.} If MSTR's primary business is deemed to be ``investing in securities,'' the SEC could require registration under the Investment Company Act. This would impose leverage limits and operational constraints incompatible with the current strategy. The company's legal position rests on arguing that Bitcoin is not a security and that Strategy remains an operating software business. Both claims are contestable.
+
+\subsection{The Preferred Stack as Buffer}
+
+The preferred share structure serves a subtle function beyond capital raising: it acts as a release valve that delays forced Bitcoin liquidation during drawdowns.
+
+Consider STRD, the non-cumulative junior preferred. Unlike cumulative preferreds, missed STRD dividends don't accrue. If Strategy suspends the \$100 million annual STRD dividend, it faces no legal obligation to catch up. This creates optionality. In a severe drawdown, management can preserve cash by cutting STRD first, reducing annual servicing from \$850 million to \$750 million.
+
+Even among cumulative preferreds, the structure provides flexibility. STRK could be restructured if the conversion option becomes worthless. STRE might be renegotiated separately. Each layer is a potential negotiation point that wouldn't exist in a pure debt structure.
+
+The net effect is that the preferred stack delays forced BTC liquidation by 12-24 months relative to what a debt-only structure would allow. This matters because Bitcoin has historically recovered from drawdowns. If MSTR can survive the trough, the reflexive loop can restart.
+
+\subsection{Is It Sustainable?}
+
+Short term (1-2 years): yes, given the USD reserve, continued market access, and BTC prices well above breakeven levels.
+
+Medium term (3-5 years): depends on BTC staying above roughly \$35,000 (where capital market access becomes strained), volatility staying elevated (for convertible financing), and servicing costs remaining manageable. The servicing burden is currently \$850 million annually and growing toward \$1 billion as new preferreds are issued.
+
+Long term (5+ years): the compounding dividend burden creates a growing fixed cost base. Unless BTC appreciation outpaces servicing costs, the strategy eventually becomes constrained. The software business generates \$40-50 million annually; servicing costs approach \$1 billion. The gap must be closed through capital appreciation or new issuance.
+
+\subsection{Limitations}
+
+The event study sample is small (23 events). The premium persistence regression documents correlation, not causation. The breakeven analysis assumes orderly liquidation at market prices, which may not hold in distress. And the entire analysis is conducted during a period that, while including the 2022 bear market, is dominated by a Bitcoin bull run. How the structure performs through a prolonged multi-year bear market remains untested.
+
