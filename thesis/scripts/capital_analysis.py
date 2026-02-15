@@ -88,16 +88,16 @@ def plot_sensitivity(df):
 
 def run_analysis():
     # Current data (Jan 2026)
-    btc_holdings = 687410
+    btc_holdings = 713502
 
-    # Capital structure by seniority
+    # Capital structure by seniority (from SEC filings)
     capital_layers = [
-        ('Convertible Debt', 8.20e9),
-        ('STRF (Senior Pref)', 0.75e9),
-        ('STRC (Variable Pref)', 2.50e9),
-        ('STRK (Convert Pref)', 1.50e9),
-        ('STRE (Euro Pref)', 0.72e9),
-        ('STRD (Junior Pref)', 1.00e9),
+        ('Convertible Debt', 7.414e9),
+        ('STRF (Senior Pref)', 1.37e9),
+        ('STRC (Variable Pref)', 3.38e9),
+        ('STRE (Euro Pref)', 0.80e9),
+        ('STRK (Convert Pref)', 1.54e9),
+        ('STRD (Junior Pref)', 1.44e9),
     ]
 
     total_claims = sum(c for _, c in capital_layers)
@@ -105,7 +105,7 @@ def run_analysis():
 
     breakevens = calc_breakeven(btc_holdings, capital_layers)
 
-    prices = [150000, 120000, 95000, 75000, 55000, 35000, 21300]
+    prices = [150000, 120000, 95000, 75000, 55000, 35000, 22341]
     sens = sensitivity(btc_holdings, total_claims, prices)
 
     plot_sensitivity(sens)
