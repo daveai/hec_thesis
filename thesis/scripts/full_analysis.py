@@ -20,17 +20,17 @@ print("=" * 70)
 # =============================================================================
 # PARAMETERS (Jan 2026)
 # =============================================================================
-BTC_HOLDINGS = 687410
-TOTAL_CLAIMS = 14.67e9  # converts + preferred
+BTC_HOLDINGS = 713502
+TOTAL_CLAIMS = 15.944e9  # converts ($7.414B) + preferred ($8.53B)
 
 # Capital structure (by seniority)
 CAPITAL_LAYERS = [
-    ('Convertible Debt', 8.20e9),
-    ('STRF (Senior Preferred)', 0.75e9),
-    ('STRC (Variable Preferred)', 2.50e9),
-    ('STRK (Convert Preferred)', 1.50e9),
-    ('STRE (Euro Preferred)', 0.72e9),
-    ('STRD (Junior Preferred)', 1.00e9),
+    ('Convertible Debt', 7.414e9),
+    ('STRF (Senior Preferred)', 1.37e9),
+    ('STRC (Variable Preferred)', 3.38e9),
+    ('STRE (Euro Preferred)', 0.80e9),
+    ('STRK (Convert Preferred)', 1.54e9),
+    ('STRD (Junior Preferred)', 1.44e9),
 ]
 
 # =============================================================================
@@ -99,7 +99,7 @@ print("\n" + "=" * 70)
 print("3. CAPITAL STRUCTURE SENSITIVITY")
 print("=" * 70)
 
-btc_scenarios = [120000, 95000, 75000, 55000, 35000, 21300]
+btc_scenarios = [120000, 95000, 75000, 55000, 35000, 22341]
 
 print(f"\n{'BTC Price':<15} {'NAV ($B)':>12} {'Asset/Debt':>12} {'Equity ($B)':>12}")
 print("-" * 55)

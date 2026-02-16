@@ -28,23 +28,25 @@ Selected code for data collection and analysis is available in the accompanying 
 \begin{table}[H]
 \centering
 \caption{Strategy Convertible Note Issues (January 2026)}
-\begin{tabular}{@{}lrrrrr@{}}
+\begin{tabular}{@{}lrrrrl@{}}
 \toprule
 \textbf{Issue} & \textbf{Principal} & \textbf{Coupon} & \textbf{Maturity} & \textbf{Conv Price} & \textbf{Status} \\
 \midrule
-Sep 2024 & \$604M & 0.625\% & Sep 2028 & \$2,327 & Active \\
-Dec 2024 & \$800M & 0.00\% & Dec 2029 & \$2,594 & Active \\
-Mar 2025 & \$1.01B & 0.625\% & Mar 2030 & \$2,043 & Active \\
-Mar 2025 & \$800M & 0.00\% & Mar 2030 & \$2,261 & Active \\
-Feb 2025 & \$2.0B & 0.00\% & Mar 2030 & \$2,417 & Active \\
-Mar 2025 & \$3.0B & 0.875\% & Mar 2031 & \$2,891 & Active \\
+Dec 2020 & \$650M & 0.75\% & Dec 2025 & \$39.80 & Called Jul 2024 \\
+Feb 2021 & \$1.05B & 0.00\% & Feb 2027 & \$143.20 & Called Feb 2025 \\
 \midrule
-\textbf{Total} & \textbf{\$8.2B} & \textbf{0.42\%} & & & \\
+Mar 2024 & \$604M & 0.875\% & Mar 2031 & \$232.72 & Outstanding \\
+Jun 2024 & \$800M & 2.25\% & Jun 2032 & \$204.33 & Outstanding \\
+Sep 2024 & \$1.01B & 0.625\% & Sep 2028 & \$183.19 & Outstanding \\
+Nov 2024 & \$3.0B & 0.00\% & Dec 2029 & \$672.40 & Outstanding \\
+Feb 2025 & \$2.0B & 0.00\% & Mar 2030 & \$433.43 & Outstanding \\
+\midrule
+\textbf{Outstanding} & \textbf{\$7.4B} & & & & \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Note: Maturities are staggered from 2028 to 2031, with weighted average maturity of approximately 5.1 years.
+Note: Conversion prices are post-split (10:1, Aug 2024). Maturities are staggered from 2028 to 2032, with weighted average maturity of approximately 4.5 years. Two earlier issues (Dec 2020 and Feb 2021) were called and no longer outstanding.
 
 \section{Granger Causality Tests}
 \label{app:granger}
@@ -58,18 +60,18 @@ The Granger causality tests examine whether the NAV premium predicts BTC returns
 \toprule
 \textbf{Null Hypothesis} & \textbf{Lags} & \textbf{F-stat} & \textbf{p-value} & \textbf{Conclusion} \\
 \midrule
-Premium $\not\Rightarrow$ BTC & 5 & 0.89 & 0.487 & Fail to reject \\
-BTC $\not\Rightarrow$ Premium & 5 & 2.47 & 0.031 & Reject \\
+Premium $\not\Rightarrow$ BTC & 5 & 0.90 & 0.479 & Fail to reject \\
+BTC $\not\Rightarrow$ Premium & 5 & 1.90 & 0.092 & Marginal \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The results show asymmetric causality. BTC returns Granger-cause the NAV premium ($p = 0.031$), but the premium doesn't significantly predict future BTC returns ($p = 0.487$). This tells us that MSTR is a price-taker in Bitcoin markets, not a price-maker. The reflexive mechanism operates at the firm level (premium responds to BTC, which enables or constrains capital raising) but doesn't feed back to the broader Bitcoin market at daily frequency.
+The results show suggestive asymmetric causality. BTC returns marginally Granger-cause the NAV premium ($p = 0.092$), while the premium doesn't predict future BTC returns ($p = 0.479$). This is consistent with MSTR being a price-taker in Bitcoin markets, not a price-maker. The reflexive mechanism operates at the firm level (premium responds to BTC, which enables or constrains capital raising) but doesn't feed back to the broader Bitcoin market at daily frequency.
 
 \section{Extended Sensitivity Analysis}
 \label{app:sensitivity}
 
-Table~\ref{tab:sensitivity_detail} provides capital structure metrics across a wider range of BTC prices, based on 687,410 BTC holdings and \$14.67B in total claims.
+Table~\ref{tab:sensitivity_detail} provides capital structure metrics across a wider range of BTC prices, based on 713,502 BTC holdings and \$15.9B in total claims.
 
 \begin{table}[H]
 \centering
@@ -79,13 +81,13 @@ Table~\ref{tab:sensitivity_detail} provides capital structure metrics across a w
 \toprule
 \textbf{BTC Price} & \textbf{NAV (\$B)} & \textbf{Asset/Debt} & \textbf{Equity (\$B)} \\
 \midrule
-\$150,000 & 103.1 & 7.03$\times$ & 88.4 \\
-\$120,000 & 82.5 & 5.62$\times$ & 67.8 \\
-\$95,000 & 65.3 & 4.45$\times$ & 50.6 \\
-\$70,000 & 48.1 & 3.28$\times$ & 33.4 \\
-\$50,000 & 34.4 & 2.34$\times$ & 19.7 \\
-\$35,000 & 24.1 & 1.64$\times$ & 9.4 \\
-\$21,300 & 14.6 & 1.00$\times$ & 0 \\
+\$150,000 & 107.0 & 6.71$\times$ & 91.1 \\
+\$120,000 & 85.6 & 5.37$\times$ & 69.7 \\
+\$95,000 & 67.8 & 4.25$\times$ & 51.8 \\
+\$70,000 & 49.9 & 3.13$\times$ & 34.0 \\
+\$50,000 & 35.7 & 2.24$\times$ & 19.7 \\
+\$35,000 & 25.0 & 1.57$\times$ & 9.0 \\
+\$22,346 & 15.9 & 1.00$\times$ & 0 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -95,9 +97,9 @@ Table~\ref{tab:sensitivity_detail} provides capital structure metrics across a w
 
 The main findings are stable across alternative specifications:
 
-\textbf{Premium persistence.} Using 5, 10, or 20 lags in the autoregressive specification yields coefficients between 0.97 and 0.995, all indicating high persistence.
+\textbf{Premium persistence.} Using 5, 10, or 20 lags in the autoregressive specification yields coefficients between 0.97 and 1.00, all indicating high persistence.
 
-\textbf{Event study windows.} Testing alternative windows (3, 7, 15 days) produces qualitatively similar results: pre-event premiums consistently exceed the unconditional mean by 40-60 percentage points.
+\textbf{Event study windows.} Testing alternative windows (3, 7, 15 days) produces qualitatively similar results: pre-event premiums are consistently elevated, and the post-event decline pattern is robust across window specifications.
 
 \textbf{Sample splits.} Dividing the sample into pre-2024 (initial accumulation) and post-2024 (aggressive expansion) periods yields consistent patterns in both subsamples.
 
