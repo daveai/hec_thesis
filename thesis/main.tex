@@ -20,6 +20,7 @@
 \usepackage{pdflscape}
 \usepackage{xcolor}
 \usepackage{textcomp}
+\usepackage{tgtermes}
 
 % Custom colors
 \definecolor{btcorange}{RGB}{247,147,26}
@@ -44,8 +45,8 @@
 }
 
 \author{%
-    Dave Montali \\
-    Executive Master in Finance (EMiF 10) \\
+    Dave Montali\footnote{dave.montali@hec.edu} \\
+    Executive MSc in Finance \\
     HEC Paris \\[0.3cm]
     \small Supervisor: Co-Pierre Georg
 }
@@ -61,10 +62,10 @@
 % Abstract
 \begin{abstract}
 \noindent
-This thesis investigates the self-reinforcing feedback loop between Strategy's (MSTR, formerly MicroStrategy) financing strategy and Bitcoin acquisitions. As of January 2026, Strategy holds 687,410 BTC financed through \$8.2 billion in convertible debt and \$6.5 billion in preferred shares. I frame MSTR equity as a call option on Bitcoin, document patterns consistent with reflexive capital formation through an event study around capital raises, and examine how convertible arbitrageurs profit from the structure at the expense of retail equity holders. Using data from August 2020 to January 2026, I find that Strategy systematically raises capital during elevated premium windows (average pre-event premium of 47.3\% vs. unconditional mean of $-$8.2\%, $p < 0.001$). The NAV premium exhibits extreme persistence ($\beta = 0.995$), allowing management to exploit favorable conditions for extended capital raising campaigns. I stress-test the capital structure through scenario analysis, finding equity wipeout occurs at approximately \$21,300 BTC (a 78\% decline from current levels) while convertible debt remains protected until \$11,929 (an 87\% decline).
+This thesis investigates the self-reinforcing feedback loop between Strategy's (MSTR) financing strategy and Bitcoin acquisitions. As of January 2026, Strategy holds 713,502 BTC financed through \$7.4 billion in convertible debt and \$8.5 billion in preferred shares. Using an event study around capital raises (August 2020 to January 2026), I document patterns consistent with reflexive capital formation: Strategy systematically raises capital during elevated premium windows. I analyze the capital structure through scenario analysis and examine how convertible arbitrageurs profit from the structure at the expense of retail equity holders.
 
 \vspace{0.5cm}
-\noindent\textbf{Keywords:} Strategy, MicroStrategy, Bitcoin, Convertible Bonds, Reflexivity, Capital Structure, Corporate Finance
+\noindent\textbf{Keywords:} Strategy, MicroStrategy, Bitcoin, Convertible Bonds, Reflexivity, Capital Structure
 \end{abstract}
 \newpage
 
@@ -79,12 +80,10 @@ This thesis investigates the self-reinforcing feedback loop between Strategy's (
 
 % Chapters
 \input{chapters/introduction}
-\input{chapters/literature}
 \input{chapters/capital_structure}
 \input{chapters/methodology}
 \input{chapters/results}
 \input{chapters/discussion}
-\input{chapters/datco_landscape}
 \input{chapters/conclusion}
 
 % Bibliography

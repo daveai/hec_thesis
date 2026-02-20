@@ -1,9 +1,9 @@
-\section{Literature Review}
+\subsection{Literature Review}
 \label{sec:literature}
 
 Three strands of academic work inform this analysis: market reflexivity, structural credit models, and convertible bond arbitrage. None adequately addresses the phenomenon MSTR represents, but together they provide the theoretical scaffolding for understanding what the company has built.
 
-\subsection{Market Reflexivity}
+\subsubsection{Market Reflexivity}
 
 George Soros introduced reflexivity in \textit{The Alchemy of Finance} \citep{soros1987alchemy}, arguing that market participants don't merely observe fundamentals but actively shape them. Prices reflect beliefs about value, and those beliefs influence the very fundamentals they purport to measure. Two functions operate simultaneously: a cognitive function where participants try to understand the world, and a participating function where their actions change it. When both functions interact, self-reinforcing cycles emerge that deviate from equilibrium predictions.
 
@@ -19,7 +19,7 @@ I contend that MSTR offers a unique laboratory for testing whether firm-level dy
 
 Rather than claim to prove reflexivity exists, I test whether observable patterns are consistent with reflexive dynamics. The contribution is methodological: providing a framework for measuring feedback loops in corporate finance contexts, with MSTR as the test case. Whether these patterns constitute ``reflexivity'' in Soros's philosophical sense is less important than whether they have predictive content for understanding MSTR's capital formation behavior.
 
-\subsection{Merton Structural Credit Model}
+\subsubsection{Merton Structural Credit Model}
 
 \citet{merton1974pricing} transformed credit analysis by recognizing that equity is a call option on firm assets. Shareholders receive the residual after debt is paid: $\max(V_T - D, 0)$ at maturity, where $V_T$ is asset value and $D$ is debt face value. Debt holders receive $\min(V_T, D)$. This insight allows Black-Scholes-Merton pricing:
 \begin{align}
@@ -37,7 +37,7 @@ Critics note that Merton models systematically underpredict credit spreads (the 
 
 MSTR presents an unusually clean test case for the Merton framework, cleaner than most corporate applications. The asset (Bitcoin) has continuous market prices with no estimation required. Volatility can be calculated directly from BTC returns rather than backed out from equity prices. The debt structure is publicly documented. And equity trades continuously, allowing real-time model validation. The challenge is that Bitcoin's volatility exceeds anything Merton contemplated, raising questions about how the framework behaves at extreme parameter values.
 
-\subsection{Convertible Bond Arbitrage}
+\subsubsection{Convertible Bond Arbitrage}
 
 Convertible bonds combine straight debt with an embedded equity call option. The classic arbitrage strategy, documented by \citet{agarwal2011convertible}, involves buying the convertible, shorting the underlying equity to hedge delta, and profiting from volatility through gamma scalping. As the stock moves, the delta of the embedded option changes, requiring hedge rebalancing. This rebalancing generates trading profits proportional to realized volatility.
 
@@ -47,13 +47,13 @@ The relevant Greeks for convertible arbitrage are delta (sensitivity to underlyi
 
 MSTR amplifies convertible arb dynamics because the notional outstanding is large relative to equity float, underlying Bitcoin volatility exceeds typical equity vol by a factor of two or three, and the zero-coupon structure maximizes the embedded option component. These characteristics suggest that convertible arbitrageurs are well-positioned to extract value from the structure regardless of Bitcoin's direction.
 
-\subsection{Cryptocurrency Markets and Corporate Adoption}
+\subsubsection{Cryptocurrency Markets and Corporate Adoption}
 
 The academic literature on crypto markets has grown rapidly since Bitcoin's inception. \citet{liu2022risks} establish that cryptocurrency returns are driven by factors distinct from traditional asset pricing models; network effects and momentum dominate. \citet{makarov2020trading} document substantial cross-exchange arbitrage opportunities, suggesting persistent inefficiencies. \citet{griffin2020bitcoin} raise concerns about price manipulation, though the extent remains debated.
 
 Corporate Bitcoin adoption is a newer phenomenon with limited academic coverage. \citet{baker2022corporate} survey post-2020 treasury practices and find increased interest in digital assets as inflation hedges. \citet{yi2021bitcoin} examine announcement effects of corporate Bitcoin purchases on stock returns. But MicroStrategy sits outside the scope of this literature. Most corporate adopters allocated single-digit percentages of treasury to Bitcoin. MSTR made it the entire balance sheet. No framework exists for analyzing a company that has transformed itself from a software firm into a leveraged Bitcoin vehicle. Since 2024, a growing cohort of public companies have adopted variants of Strategy's model, collectively referred to as Digital Asset Treasury Companies (DATCOs). I examine these firms comparatively in Section~\ref{sec:datco_landscape}.
 
-\subsection{Research Gap}
+\subsubsection{Research Gap}
 
 The literatures on reflexivity, credit modeling, and convertible arbitrage developed independently and address different phenomena. Soros wrote about macro markets, Merton about corporate debt, and the arb literature about hedge fund strategies. No prior work has tested for reflexive dynamics in a single-issuer cryptocurrency context, applied structural credit models to crypto-backed liabilities, or modeled how convertible arbitrage interacts with firm-level feedback loops.
 
