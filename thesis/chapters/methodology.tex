@@ -33,7 +33,7 @@ The key metric is the asset-to-debt ratio:
     \text{Asset/Debt} = \frac{\text{BTC Holdings} \times \text{BTC Price}}{\text{Total Claims}}
 \end{equation}
 
-At current prices (\$95,000 BTC), Strategy's 713,502 BTC are worth \$67.8 billion against \$15.9 billion in total claims, yielding a 4.25$\times$ asset/debt ratio. This ratio tells you how much cushion exists before creditors face impairment.
+At the January 31, 2026 close (\$79,000 BTC), Strategy's 713,502 BTC are worth \$56.4 billion against \$15.9 billion in total claims, yielding a 3.54$\times$ asset/debt ratio. This ratio tells you how much cushion exists before creditors face impairment.
 
 The breakeven BTC price for each capital layer is simply:
 \begin{equation}
@@ -57,7 +57,7 @@ A coefficient near 1.0 suggests that premium states are sticky: once MSTR trades
 
 \subsubsection{Event Study Around Capital Raises}
 
-The core mechanistic claim is that MSTR times capital raises to premium windows. I test this directly by identifying 23 capital raise events from SEC filings (ATM announcements, convertible offerings, preferred issuances) and measuring the NAV premium in windows around each announcement:
+The core mechanistic claim is that MSTR times capital raises to premium windows. I test this directly by identifying 23 capital raise events from SEC filings (ATM announcements, convertible offerings, preferred issuances) during the October 2024 to November 2025 period of aggressive capital formation, and measuring the NAV premium in windows around each announcement:
 \begin{equation}
     \overline{Premium}_{[-k, -1]} = \frac{1}{k} \sum_{t=-k}^{-1} Premium_t
 \end{equation}

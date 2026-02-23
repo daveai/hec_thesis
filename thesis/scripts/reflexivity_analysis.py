@@ -52,7 +52,7 @@ def premium_persistence(df):
 
 
 def event_study(df, events_file=None):
-    """Compare pre-event premium to unconditional mean"""
+    """Measure pre/post event premiums using business day offsets"""
     print("\n" + "=" * 50)
     print("EVENT STUDY: CAPITAL RAISES")
     print("=" * 50)
@@ -61,7 +61,7 @@ def event_study(df, events_file=None):
     if events_file and os.path.exists(events_file):
         events = pd.read_csv(events_file, parse_dates=['date'])['date']
     else:
-        # these are the capital raise dates I compiled from 8-Ks
+        # capital raise dates compiled from 8-Ks
         events = pd.to_datetime([
             '2024-10-30', '2024-11-11', '2024-11-18', '2024-11-25',
             '2024-12-09', '2024-12-16', '2024-12-23', '2025-01-06',
@@ -71,42 +71,52 @@ def event_study(df, events_file=None):
             '2025-09-08', '2025-10-06', '2025-11-03'
         ])
 
+    trading_days = df.index.sort_values()
+
+    def nearest_trading_day(date):
+        idx = trading_days.searchsorted(date)
+        if idx >= len(trading_days):
+            return trading_days[-1]
+        if idx > 0 and (trading_days[idx] - date) > (date - trading_days[idx-1]):
+            return trading_days[idx-1]
+        return trading_days[idx]
+
     uncond_mean = df['Premium'].mean()
     print(f"\nUnconditional mean premium: {uncond_mean*100:.1f}%")
     print(f"Number of events: {len(events)}")
 
-    windows = [5, 10, 20]
-    results = []
+    # Pre-event and post-event windows
+    windows = [
+        ('20 days pre-event', -20, -1),
+        ('10 days pre-event', -10, -1),
+        ('5 days pre-event', -5, -1),
+        ('5 days post-event', 1, 5),
+        ('10 days post-event', 1, 10),
+    ]
 
-    for window in windows:
-        pre_premiums = []
+    print(f"\n{'Window':<25} {'Avg Premium':>12}")
+    print("-" * 40)
+
+    for label, start_offset, end_offset in windows:
+        event_premiums = []
 
         for event in events:
-            # get premium in window before event
-            mask = (df.index >= event - pd.Timedelta(days=window*1.5)) & \
-                   (df.index < event)
-            if mask.sum() > 0:
-                pre_premiums.append(df.loc[mask, 'Premium'].mean())
+            event_td = nearest_trading_day(event)
+            event_idx = trading_days.get_loc(event_td)
 
-        if pre_premiums:
-            mean_pre = np.mean(pre_premiums)
-            std_pre = np.std(pre_premiums) / np.sqrt(len(pre_premiums))
-            diff = mean_pre - uncond_mean
-            t_stat = diff / std_pre if std_pre > 0 else 0
+            start_idx = max(0, event_idx + start_offset)
+            end_idx = min(len(trading_days) - 1, event_idx + end_offset)
 
-            results.append({
-                'Window': f'{window} days',
-                'Pre-Event Mean': mean_pre,
-                'Difference': diff,
-                't-stat': t_stat
-            })
+            window_days = trading_days[start_idx:end_idx + 1]
+            premiums = df.loc[df.index.isin(window_days), 'Premium'].dropna()
+            if len(premiums) > 0:
+                event_premiums.append(premiums.mean())
 
-            print(f"\n{window}-day window:")
-            print(f"  Pre-event mean: {mean_pre*100:.1f}%")
-            print(f"  Difference:     {diff*100:.1f} pp")
-            print(f"  t-stat:         {t_stat:.2f}")
+        if event_premiums:
+            mean_prem = np.mean(event_premiums)
+            print(f"{label:<25} {mean_prem*100:>11.1f}%")
 
-    return pd.DataFrame(results)
+    return events
 
 
 def granger_test(df, max_lags=5):
@@ -143,8 +153,18 @@ def granger_test(df, max_lags=5):
 
 
 def plot_event_study(df, events):
-    """Plot avg premium around events - nice visual for the thesis"""
+    """Plot avg premium around events using business day offsets"""
     os.makedirs(FIGURES_DIR, exist_ok=True)
+
+    trading_days = df.index.sort_values()
+
+    def nearest_trading_day(date):
+        idx = trading_days.searchsorted(date)
+        if idx >= len(trading_days):
+            return trading_days[-1]
+        if idx > 0 and (trading_days[idx] - date) > (date - trading_days[idx-1]):
+            return trading_days[idx-1]
+        return trading_days[idx]
 
     days_range = range(-20, 15)
     avg_premium = []
@@ -152,21 +172,21 @@ def plot_event_study(df, events):
     for day in days_range:
         premiums = []
         for event in events:
-            target = event + pd.Timedelta(days=day)
-            if target in df.index:
-                premiums.append(df.loc[target, 'Premium'])
+            event_td = nearest_trading_day(event)
+            event_idx = trading_days.get_loc(event_td)
+            target_idx = event_idx + day
+            if 0 <= target_idx < len(trading_days):
+                target_date = trading_days[target_idx]
+                if target_date in df.index and not pd.isna(df.loc[target_date, 'Premium']):
+                    premiums.append(df.loc[target_date, 'Premium'])
         avg_premium.append(np.mean(premiums) if premiums else np.nan)
-
-    uncond = df['Premium'].mean()
 
     plt.figure(figsize=(10, 6))
     plt.plot(days_range, [p * 100 for p in avg_premium], 'b-o', linewidth=2, markersize=4)
-    plt.axhline(y=uncond * 100, color='r', linestyle='--', label='Unconditional mean')
     plt.axvline(x=0, color='gray', linestyle='-', alpha=0.5)
     plt.xlabel('Days Relative to Announcement')
     plt.ylabel('Average NAV Premium (%)')
     plt.title('NAV Premium Around Capital Raise Announcements')
-    plt.legend()
     plt.grid(True, alpha=0.3)
 
     plt.savefig(os.path.join(FIGURES_DIR, "event_study.png"), dpi=300, bbox_inches='tight')

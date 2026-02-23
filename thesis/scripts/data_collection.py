@@ -1,6 +1,6 @@
 """
 Data Collection - MSTR Thesis
-Downloads BTC, MSTR, SPY from Yahoo Finance
+Downloads BTC, MSTR from Yahoo Finance
 """
 
 import pandas as pd
@@ -74,16 +74,35 @@ def calc_nav_premium():
     holdings['Date'] = pd.to_datetime(holdings['Date'])
     holdings.set_index('Date', inplace=True)
 
+    # Shares outstanding over time (post 10:1 split, from SEC 10-Q/10-K filings)
+    shares = pd.DataFrame({
+        'Date': [
+            '2020-06-30', '2020-09-30', '2020-12-31',
+            '2021-12-31', '2022-12-31', '2023-12-31',
+            '2024-03-31', '2024-06-30', '2024-09-30', '2024-12-31',
+            '2025-03-31', '2025-06-30', '2025-09-30', '2025-12-31'
+        ],
+        'Shares_Outstanding': [
+            96_862_000, 92_670_000, 95_870_000,
+            112_860_000, 115_490_000, 168_680_000,
+            177_374_310, 194_320_700, 202_635_250, 245_778_498,
+            266_177_509, 280_958_591, 287_108_676, 312_062_250
+        ]
+    })
+    shares['Date'] = pd.to_datetime(shares['Date'])
+    shares.set_index('Date', inplace=True)
+
     # merge everything
     combined = btc[['Close']].rename(columns={'Close': 'BTC_Price'})
     combined = combined.join(mstr[['Close']].rename(columns={'Close': 'MSTR_Price'}))
     combined = combined.join(holdings)
     combined['BTC_Holdings'] = combined['BTC_Holdings'].ffill()
+    combined = combined.join(shares)
+    combined['Shares_Outstanding'] = combined['Shares_Outstanding'].ffill()
 
     # NAV and premium
-    MSTR_SHARES = 244_000_000  # approx, need to update from latest 10-Q
     combined['NAV'] = combined['BTC_Holdings'] * combined['BTC_Price']
-    combined['Market_Cap'] = combined['MSTR_Price'] * MSTR_SHARES
+    combined['Market_Cap'] = combined['MSTR_Price'] * combined['Shares_Outstanding']
     combined['NAV_Premium'] = (combined['Market_Cap'] - combined['NAV']) / combined['NAV']
 
     combined.to_csv(os.path.join(DATA_DIR, "nav_analysis.csv"))

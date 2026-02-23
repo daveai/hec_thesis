@@ -3,19 +3,19 @@
 
 \subsection{What the Evidence Shows}
 
-The event study is the core finding. MSTR systematically raises capital at substantial premiums to NAV: the average pre-event premium is 127\%, meaning the stock trades at roughly 2.3$\times$ the value of underlying Bitcoin holdings. Premiums decline in the days following issuance, falling from 127\% to 122\% within 10 trading days as the market prices in dilution. Management issues equity or converts when the spread between market valuation and NAV is wide enough to generate accretive BTC accumulation.
+The event study is the core finding. MSTR systematically raises capital at substantial premiums to NAV: the average pre-event premium is 119\%, meaning the stock trades at roughly 2.2$\times$ the value of underlying Bitcoin holdings. Premiums decline in the days following issuance, falling from 119\% to 108\% within 10 trading days as the market prices in dilution. Management issues equity or converts when the spread between market valuation and NAV is wide enough to generate accretive BTC accumulation.
 
-The premium persistence result ($\beta = 1.002$) explains why this works. Once MSTR trades at a premium, it tends to stay at a premium. Once it trades at a discount, it stays at a discount. This stickiness gives management time to execute capital raises during favorable windows rather than racing against mean-reversion.
+The premium persistence result ($\beta = 0.991$) explains why this works. Once MSTR trades at a premium, it tends to stay at a premium. Once it trades at a discount, it stays at a discount. This stickiness gives management time to execute capital raises during favorable windows rather than racing against mean-reversion.
 
-Together, these findings describe a conditional feedback loop. When BTC prices rise, NAV increases, the premium often expands, and Strategy can raise capital cheaply to buy more Bitcoin. When BTC falls, the premium compresses or goes negative, and the capital formation engine stalls. The loop operates at the firm level; Granger causality tests (reported in the appendix) show that MSTR's premium doesn't predict Bitcoin returns, indicating the company is a price-taker in Bitcoin markets, not a price-maker.
+Together, these findings describe a conditional feedback loop. When BTC prices rise, NAV increases, the premium often expands, and Strategy can raise capital cheaply to buy more Bitcoin. When BTC falls, the premium compresses or goes negative, and the capital formation engine stalls. The loop operates at the firm level; Granger causality tests (reported in the appendix) show at most marginal evidence that the premium predicts Bitcoin returns ($p = 0.065$), and no evidence of the reverse ($p = 0.133$), consistent with the company being a price-taker in Bitcoin markets rather than a price-maker.
 
 \subsection{Credit Risk: Simple Math}
 
 The credit story is straightforward once you accept that MSTR equity is a call option on Bitcoin with the debt burden as the strike price.
 
-At \$95,000 BTC, Strategy holds \$67.8 billion in assets against \$15.9 billion in claims: a 4.25$\times$ asset/debt ratio. Equity is worth \$51.8 billion. This cushion is substantial. Bitcoin would need to fall 76\% before equity is wiped out.
+At \$79,000 BTC (the January 31, 2026 close), Strategy holds \$56.4 billion in assets against \$15.9 billion in claims: a 3.54$\times$ asset/debt ratio. Equity is worth \$40.4 billion. This cushion is meaningful. Bitcoin would need to fall 72\% before equity is wiped out.
 
-At \$35,000 BTC (a 63\% decline), asset/debt compresses to 1.57$\times$. Equity falls 83\% to \$9.0 billion. Strategy likely loses access to ATM equity issuance at attractive terms. The reflexive loop breaks or at least weakens severely.
+At \$35,000 BTC (a 56\% decline), asset/debt compresses to 1.57$\times$. Equity falls 78\% to \$9.0 billion. Strategy likely loses access to ATM equity issuance at attractive terms. The reflexive loop breaks or at least weakens severely.
 
 At \$22,346 BTC, assets equal claims and equity is worthless. The preferred dividends become at risk. Below that level, losses start moving up the capital structure through the preferred tranches toward the convertible debt.
 

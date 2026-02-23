@@ -12,6 +12,7 @@ warnings.filterwarnings('ignore')
 # Load data
 btc = pd.read_csv('../data/btc_prices.csv', index_col=0, parse_dates=True)
 mstr = pd.read_csv('../data/mstr_prices.csv', index_col=0, parse_dates=True)
+nav = pd.read_csv('../data/nav_analysis.csv', index_col=0, parse_dates=True)
 
 print("=" * 70)
 print("HEC THESIS - FULL ANALYSIS RESULTS")
@@ -21,6 +22,7 @@ print("=" * 70)
 # PARAMETERS (Jan 2026)
 # =============================================================================
 BTC_HOLDINGS = 713502
+BTC_BASE_PRICE = 79000  # approx Jan 31, 2026 close
 TOTAL_CLAIMS = 15.944e9  # converts ($7.414B) + preferred ($8.53B)
 
 # Capital structure (by seniority)
@@ -43,10 +45,8 @@ print("=" * 70)
 btc_price = btc['Close'] if 'Close' in btc.columns else btc.iloc[:, 0]
 mstr_price = mstr['Close'] if 'Close' in mstr.columns else mstr.iloc[:, 0]
 
-# NAV premium calc
-shares = 244_000_000
-nav_per_share = (BTC_HOLDINGS * btc_price) / shares
-nav_premium = ((mstr_price - nav_per_share) / nav_per_share * 100).dropna()
+# NAV premium from time-varying shares (computed in data_collection.py)
+nav_premium = (nav['NAV_Premium'].dropna() * 100)  # convert to percentage
 
 def desc_stats(series, name):
     s = series.dropna()
@@ -99,7 +99,7 @@ print("\n" + "=" * 70)
 print("3. CAPITAL STRUCTURE SENSITIVITY")
 print("=" * 70)
 
-btc_scenarios = [120000, 95000, 75000, 55000, 35000, 22341]
+btc_scenarios = [120000, 95000, 79000, 55000, 35000, 22346]
 
 print(f"\n{'BTC Price':<15} {'NAV ($B)':>12} {'Asset/Debt':>12} {'Equity ($B)':>12}")
 print("-" * 55)
@@ -152,10 +152,10 @@ print("5. SCENARIO ANALYSIS")
 print("=" * 70)
 
 scenarios = [
-    ('Base Case', 95000),
-    ('Moderate (-30%)', 66500),
-    ('Severe (-50%)', 47500),
-    ('Prolonged (-70%)', 28500),
+    ('Base Case', BTC_BASE_PRICE),
+    ('Moderate (-30%)', int(BTC_BASE_PRICE * 0.7)),
+    ('Severe (-50%)', int(BTC_BASE_PRICE * 0.5)),
+    ('Prolonged (-70%)', int(BTC_BASE_PRICE * 0.3)),
 ]
 
 print(f"\n{'Scenario':<20} {'BTC Price':>12} {'NAV ($B)':>12} {'Asset/Debt':>12} {'Equity ($B)':>12}")

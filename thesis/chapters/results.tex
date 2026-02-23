@@ -15,14 +15,14 @@ Table~\ref{tab:descriptive} reports summary statistics for the key variables.
 \midrule
 BTC Price (\$) & 51,647 & 30,235 & 10,132 & 124,753 \\
 MSTR Price (\$) & 116.55 & 121.29 & 13.49 & 473.83 \\
-NAV Premium (\%) & 196.0 & 230.3 & $-$40.6 & 1,501.6 \\
+NAV Premium (\%) & 50.1 & 67.6 & $-$47.3 & 325.0 \\
 BTC 30d Vol (\%) & 45.58 & 16.48 & 14.11 & 98.91 \\
 MSTR 30d Vol (\%) & 88.38 & 31.23 & 35.95 & 183.97 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The average NAV premium of 196\% reflects the fact that MSTR has traded at a persistent premium to its Bitcoin holdings throughout most of the sample period. The premium exhibits enormous volatility (standard deviation of 230 percentage points), ranging from $-41\%$ to over 1,500\%. The extreme upper values reflect the early period (2020--2021) when BTC holdings were small relative to the legacy software business valuation. The median premium of 131\% is more representative of typical conditions.
+The average NAV premium of 50\% indicates that MSTR has traded above its Bitcoin NAV for most of the sample period. The premium is volatile (standard deviation of 68 percentage points), ranging from $-47\%$ during the May 2022 crypto winter to 325\% in late 2020 when BTC holdings were small relative to the legacy software business valuation. The median premium of 24\% is more representative of typical conditions.
 
 \subsection{Stress Testing the Capital Structure}
 
@@ -38,19 +38,19 @@ Table~\ref{tab:sensitivity} shows how Strategy's capital structure metrics chang
 \toprule
 \textbf{BTC Price} & \textbf{NAV} & \textbf{Asset/Debt} & \textbf{Equity Value} \\
 \midrule
-\$120,000 (+26\%) & \$85.6B & 5.37$\times$ & \$69.7B \\
-\$95,000 (Base) & \$67.8B & 4.25$\times$ & \$51.8B \\
-\$75,000 ($-$21\%) & \$53.5B & 3.36$\times$ & \$37.6B \\
-\$55,000 ($-$42\%) & \$39.2B & 2.46$\times$ & \$23.3B \\
-\$35,000 ($-$63\%) & \$25.0B & 1.57$\times$ & \$9.0B \\
-\$22,346 ($-$76\%) & \$15.9B & 1.00$\times$ & \$0 \\
+\$120,000 & \$85.6B & 5.37$\times$ & \$69.7B \\
+\$95,000 & \$67.8B & 4.25$\times$ & \$51.8B \\
+\$79,000 (Base) & \$56.4B & 3.54$\times$ & \$40.4B \\
+\$55,000 & \$39.2B & 2.46$\times$ & \$23.3B \\
+\$35,000 & \$25.0B & 1.57$\times$ & \$9.0B \\
+\$22,346 & \$15.9B & 1.00$\times$ & \$0 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The key insight is leverage. A 50\% BTC decline doesn't produce a 50\% equity decline; it produces a 65\% decline (from \$51.8B to \$17.9B at \$47,500 BTC). As BTC falls, equity absorbs losses first, amplifying percentage moves in both directions. At \$35,000 BTC, equity has fallen 83\% while BTC is down 63\%. At \$22,346, equity is worthless.
+The key insight is leverage. A 50\% BTC decline doesn't produce a 50\% equity decline; it produces a 70\% decline (from \$40.4B to \$12.2B at \$39,500 BTC). As BTC falls, equity absorbs losses first, amplifying percentage moves in both directions. At \$35,000 BTC, equity has fallen 78\% while BTC is down 56\%. At \$22,346, equity is worthless.
 
-Strategy's current position provides substantial cushion. The 4.25$\times$ asset/debt ratio means Bitcoin would need to fall 76\% before equity faces complete wipeout. This is healthier than earlier in the company's history, when smaller BTC holdings meant tighter breakevens.
+Strategy's current position provides substantial cushion. The 3.54$\times$ asset/debt ratio means Bitcoin would need to fall 72\% before equity faces complete wipeout. This is healthier than earlier in the company's history, when smaller BTC holdings meant tighter breakevens.
 
 \subsubsection{Breakeven Analysis}
 
@@ -75,13 +75,13 @@ Common Equity & -- & \$22,346 \\
 \end{tabular}
 \end{table}
 
-Common equity gets wiped out at approximately \$22,346 BTC (a 76\% decline). Senior convertible debt doesn't face impairment until \$10,391 (an 89\% decline). The capital structure provides meaningful cushion for senior claims.
+Common equity gets wiped out at approximately \$22,346 BTC (a 72\% decline). Senior convertible debt doesn't face impairment until \$10,391 (an 87\% decline). The capital structure provides meaningful cushion for senior claims.
 
 \subsubsection{Critical Thresholds}
 
 Three thresholds matter for understanding how the strategy unravels:
 
-\textbf{Threshold 1: Capital Market Access} ($\sim$\$35,000 BTC). At this level, equity has declined 83\% and the asset/debt ratio compresses to 1.57$\times$. Strategy likely loses the ability to issue ATM equity at attractive terms. The reflexive loop weakens.
+\textbf{Threshold 1: Capital Market Access} ($\sim$\$35,000 BTC). At this level, equity has declined 78\% and the asset/debt ratio compresses to 1.57$\times$. Strategy likely loses the ability to issue ATM equity at attractive terms. The reflexive loop weakens.
 
 \textbf{Threshold 2: Preferred Dividend Strain} ($\sim$\$28,000 BTC). NAV falls to approximately \$20.0 billion against \$15.9 billion in claims. The \textasciitilde\$890M annual servicing burden represents roughly 22\% of remaining equity value. The USD reserve becomes critical.
 
@@ -99,19 +99,19 @@ Table~\ref{tab:regression} reports the autoregressive results.
 \toprule
 \textbf{Variable} & \textbf{Coefficient} \\
 \midrule
-$Premium_{t-1}$ & 1.002*** \\
-& (0.006) \\
-Constant & $-$0.003 \\
+$Premium_{t-1}$ & 0.991*** \\
 & (0.009) \\
+Constant & 0.004 \\
+& (0.003) \\
 \midrule
-Observations & 1,059 \\
-$R^2$ & 0.994 \\
+Observations & 1,031 \\
+$R^2$ & 0.984 \\
 \bottomrule
 \multicolumn{2}{l}{\footnotesize *** p<0.01}
 \end{tabular}
 \end{table}
 
-The lagged premium coefficient of 1.002 with an $R^2$ of 0.994 tells a simple story: premium states are sticky. Once MSTR trades at a premium (or discount), it tends to stay there. The coefficient near unity indicates a near-unit-root process --- the premium drifts in prolonged regimes rather than mean-reverting. This persistence is what allows Strategy to exploit premium windows for extended capital raising campaigns rather than racing to issue before the window closes.
+The lagged premium coefficient of 0.991 with an $R^2$ of 0.984 tells a simple story: premium states are sticky. Once MSTR trades at a premium (or discount), it tends to stay there. The coefficient near unity indicates a near-unit-root process; the premium drifts in prolonged regimes rather than mean-reverting. This persistence is what allows Strategy to exploit premium windows for extended capital raising campaigns rather than racing to issue before the window closes.
 
 \subsection{Event Study: Capital Raises and Premium Windows}
 
@@ -125,17 +125,17 @@ Table~\ref{tab:event_study} reports average NAV premiums in the windows around c
 \toprule
 \textbf{Window} & \textbf{Average NAV Premium} \\
 \midrule
-20 days pre-event & 134.3\% \\
-10 days pre-event & 129.3\% \\
-5 days pre-event & 127.4\% \\
-5 days post-event & 125.3\% \\
-10 days post-event & 121.9\% \\
+20 days pre-event & 123.8\% \\
+10 days pre-event & 121.3\% \\
+5 days pre-event & 119.0\% \\
+5 days post-event & 112.9\% \\
+10 days post-event & 108.0\% \\
 \bottomrule
 \multicolumn{2}{l}{\footnotesize N = 23 capital raise events (Oct 2024 -- Nov 2025).}
 \end{tabular}
 \end{table}
 
-Strategy raises capital at substantial premiums to NAV. In the 5 trading days before announcements, the stock trades at an average 127\% premium --- roughly 2.3$\times$ NAV. Premiums decline in the days following issuance, falling to 122\% at 10 days post-event, consistent with the market pricing in dilution from new share issuance.
+Strategy raises capital at substantial premiums to NAV. In the 5 trading days before announcements, the stock trades at an average 119\% premium, roughly 2.2$\times$ NAV. Premiums decline in the days following issuance, falling to 108\% at 10 days post-event, consistent with the market pricing in dilution from new share issuance.
 
 Figure~\ref{fig:event_study} visualizes the pattern.
 
@@ -147,11 +147,11 @@ Figure~\ref{fig:event_study} visualizes the pattern.
             xlabel={Days Relative to Announcement},
             ylabel={Average NAV Premium (\%)},
             xmin=-25, xmax=15,
-            ymin=90, ymax=160,
+            ymin=85, ymax=145,
             grid=major
         ]
         \addplot[thick, blue, mark=*] coordinates {
-            (-20, 137.1) (-15, 140.8) (-10, 129.5) (-5, 126.4) (0, 127.4) (5, 119.6) (10, 107.3)
+            (-20, 126.0) (-15, 122.4) (-10, 129.1) (-5, 122.3) (0, 115.4) (5, 115.4) (10, 96.4)
         };
         \end{axis}
     \end{tikzpicture}
@@ -171,15 +171,15 @@ Table~\ref{tab:scenarios_results} presents the capital structure under stress sc
 \toprule
 \textbf{Scenario} & \textbf{BTC Price} & \textbf{NAV} & \textbf{Asset/Debt} & \textbf{Equity Value} \\
 \midrule
-Base Case & \$95,000 & \$67.8B & 4.25$\times$ & \$51.8B \\
-Moderate ($-$30\%) & \$66,500 & \$47.4B & 2.98$\times$ & \$31.5B \\
-Severe ($-$50\%) & \$47,500 & \$33.9B & 2.13$\times$ & \$17.9B \\
-Prolonged ($-$70\%) & \$28,500 & \$20.3B & 1.28$\times$ & \$4.4B \\
+Base Case & \$79,000 & \$56.4B & 3.54$\times$ & \$40.4B \\
+Moderate ($-$30\%) & \$55,300 & \$39.5B & 2.47$\times$ & \$23.5B \\
+Severe ($-$50\%) & \$39,500 & \$28.2B & 1.77$\times$ & \$12.2B \\
+Prolonged ($-$70\%) & \$23,700 & \$16.9B & 1.06$\times$ & \$1.0B \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-A 50\% BTC drawdown (which has occurred in every historical cycle) compresses equity value from \$51.8 billion to \$17.9 billion, a 65\% decline. The asset/debt ratio falls from 4.25$\times$ to 2.13$\times$, still above the 1.0$\times$ threshold but with less cushion.
+A 50\% BTC drawdown (which has occurred in every historical cycle) compresses equity value from \$40.4 billion to \$12.2 billion, a 70\% decline. The asset/debt ratio falls from 3.54$\times$ to 1.77$\times$, still above the 1.0$\times$ threshold but with less cushion.
 
-The prolonged bear scenario ($-70\%$ BTC) pushes equity to roughly \$4.4 billion (a 92\% decline). At that level, preferred dividends consume a meaningful fraction of remaining equity value, and continued servicing depends on the USD reserve and capital market access.
+The prolonged bear scenario ($-70\%$ BTC) pushes equity to roughly \$1.0 billion (a 98\% decline). At that level, the company is within striking distance of insolvency, and continued servicing depends entirely on the USD reserve.
 

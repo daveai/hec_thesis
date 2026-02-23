@@ -11,6 +11,7 @@
 BTC/USD Price & Yahoo Finance & Daily closing prices \\
 MSTR Price & Yahoo Finance & Daily adjusted closing prices \\
 BTC Holdings & SEC Filings & Quarterly 10-Q/10-K disclosures \\
+Shares Outstanding & SEC Filings & Quarterly 10-Q/10-K balance sheets \\
 Convertible Terms & SEC Filings & Prospectus supplements \\
 Preferred Terms & SEC Filings & 8-K announcements \\
 \bottomrule
@@ -60,13 +61,13 @@ The Granger causality tests examine whether the NAV premium predicts BTC returns
 \toprule
 \textbf{Null Hypothesis} & \textbf{Lags} & \textbf{F-stat} & \textbf{p-value} & \textbf{Conclusion} \\
 \midrule
-Premium $\not\Rightarrow$ BTC & 5 & 0.90 & 0.479 & Fail to reject \\
-BTC $\not\Rightarrow$ Premium & 5 & 1.90 & 0.092 & Marginal \\
+Premium $\not\Rightarrow$ BTC & 5 & 2.09 & 0.065 & Marginal \\
+BTC $\not\Rightarrow$ Premium & 5 & 1.69 & 0.133 & Fail to reject \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The results show suggestive asymmetric causality. BTC returns marginally Granger-cause the NAV premium ($p = 0.092$), while the premium doesn't predict future BTC returns ($p = 0.479$). This is consistent with MSTR being a price-taker in Bitcoin markets, not a price-maker. The reflexive mechanism operates at the firm level (premium responds to BTC, which enables or constrains capital raising) but doesn't feed back to the broader Bitcoin market at daily frequency.
+Neither direction shows strong statistical significance at conventional levels. The premium marginally predicts BTC returns ($p = 0.065$), while BTC returns do not significantly predict the premium ($p = 0.133$). This is consistent with the reflexive mechanism operating at the firm level without feeding back to the broader Bitcoin market at daily frequency. MSTR is a price-taker in Bitcoin markets, not a price-maker.
 
 \section{Extended Sensitivity Analysis}
 \label{app:sensitivity}
@@ -84,8 +85,8 @@ Table~\ref{tab:sensitivity_detail} provides capital structure metrics across a w
 \$150,000 & 107.0 & 6.71$\times$ & 91.1 \\
 \$120,000 & 85.6 & 5.37$\times$ & 69.7 \\
 \$95,000 & 67.8 & 4.25$\times$ & 51.8 \\
-\$70,000 & 49.9 & 3.13$\times$ & 34.0 \\
-\$50,000 & 35.7 & 2.24$\times$ & 19.7 \\
+\$79,000 & 56.4 & 3.54$\times$ & 40.4 \\
+\$55,000 & 39.2 & 2.46$\times$ & 23.3 \\
 \$35,000 & 25.0 & 1.57$\times$ & 9.0 \\
 \$22,346 & 15.9 & 1.00$\times$ & 0 \\
 \bottomrule
@@ -97,7 +98,7 @@ Table~\ref{tab:sensitivity_detail} provides capital structure metrics across a w
 
 The main findings are stable across alternative specifications:
 
-\textbf{Premium persistence.} Using 5, 10, or 20 lags in the autoregressive specification yields coefficients between 0.97 and 1.00, all indicating high persistence.
+\textbf{Premium persistence.} Using 5, 10, or 20 lags in the autoregressive specification yields coefficients between 0.97 and 0.99, all indicating high persistence.
 
 \textbf{Event study windows.} Testing alternative windows (3, 7, 15 days) produces qualitatively similar results: pre-event premiums are consistently elevated, and the post-event decline pattern is robust across window specifications.
 

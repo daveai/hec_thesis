@@ -105,7 +105,7 @@ def run_analysis():
 
     breakevens = calc_breakeven(btc_holdings, capital_layers)
 
-    prices = [150000, 120000, 95000, 75000, 55000, 35000, 22341]
+    prices = [150000, 120000, 95000, 79000, 55000, 35000, 22346]
     sens = sensitivity(btc_holdings, total_claims, prices)
 
     plot_sensitivity(sens)
